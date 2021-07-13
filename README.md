@@ -22,9 +22,9 @@ https://steamcommunity.com/sharedfiles/filedetails/?id=914671373
 
 Look out! With this mod, raiders can swim through deep water! But that means your colonists can as well...
 
-People can swim through deep water at 4.2% move speed. No other stats are affected while in deep water. Oh, also, they'll be considered as "lying down" (lower accuracy)
+People can swim through deep water at 4.2% move speed. No other stats are affected while in deep water. Oh, also, they&apos;ll be considered as &quot;lying down&quot; (lower accuracy)
 
-**Yes, it works with Rainbeau's Fertile Fields (Impassable water will be passable) and sd Terraforming remains untested.**
+**Yes, it works with Rainbeau&apos;s Fertile Fields (Impassable water will be passable) and sd Terraforming remains untested.**
 
 
 ![Image](https://i.imgur.com/Rs6T6cr.png)
@@ -37,6 +37,7 @@ People can swim through deep water at 4.2% move speed. No other stats are affect
 -  For best support, please use the Discord-channel for error-reporting.
 -  Do not report errors by making a discussion-thread, I get no notification of that.
 -  If you have the solution for a problem, please post it to the GitHub repository.
+
 
 
 

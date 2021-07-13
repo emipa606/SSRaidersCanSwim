@@ -21,13 +21,16 @@ namespace Swimming
             for (var i = 0; i < list.Count; i++)
             {
                 var instruction = list[i];
-                if (instruction.opcode == OpCodes.Ret && list[i - 1].operand is float f && f - 0.9f > 0f) //f should be 1f
+                if (instruction.opcode == OpCodes.Ret && list[i - 1].operand is float f &&
+                    f - 0.9f > 0f) //f should be 1f
                 {
                     yield return new CodeInstruction(OpCodes.Ldarg_0);
                     yield return new CodeInstruction(OpCodes.Ldflda, AccessTools.Field(typeof(ShotReport), "target"));
                     //Since reflection doesnt work for this, I'm manually loading the private variable "target" with IL
-                    yield return new CodeInstruction(OpCodes.Call, typeof(TargetInfo).GetProperty("Thing")?.GetGetMethod());
-                    yield return new CodeInstruction(OpCodes.Call, AccessTools.Method(typeof(Patch_ShotReport), nameof(Manual)));
+                    yield return new CodeInstruction(OpCodes.Call,
+                        typeof(TargetInfo).GetProperty("Thing")?.GetGetMethod());
+                    yield return new CodeInstruction(OpCodes.Call,
+                        AccessTools.Method(typeof(Patch_ShotReport), nameof(Manual)));
                 }
 
                 yield return instruction;

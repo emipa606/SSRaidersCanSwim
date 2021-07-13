@@ -1,10 +1,9 @@
 ﻿using HarmonyLib;
-using UnityEngine;
 using Verse;
 
 namespace Swimming
 {
-    [HarmonyPatch(typeof(PawnRenderer), "RenderPawnInternal", typeof(Vector3), typeof(float), typeof(bool), typeof(Rot4), typeof(Rot4), typeof(RotDrawMode), typeof(bool), typeof(bool), typeof(bool))]
+    [HarmonyPatch(typeof(PawnRenderer), "RenderPawnInternal")]
     internal static class Patch_PawnRenderer
     {
         private static void Prefix(ref bool renderBody, PawnRenderer __instance)
@@ -21,7 +20,8 @@ namespace Swimming
             }
 
             var terrain = pawn.Position.GetTerrain(pawn.Map);
-            if (!RaidersCanSwim.DeepWaterDefs.Contains(terrain) && !RaidersCanSwim.DeepWaterLabels.Contains(terrain.label))
+            if (!RaidersCanSwim.DeepWaterDefs.Contains(terrain) &&
+                !RaidersCanSwim.DeepWaterLabels.Contains(terrain.label))
             {
                 return;
             }
