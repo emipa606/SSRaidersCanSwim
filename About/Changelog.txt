@@ -1,5 +1,8 @@
 # Changelog for SSRaidersCanSwim
 
+1.5.1 - Republish for 1.5, steam failed for some reason
+
+
 1.5.0 - Mod updated for 1.5 and passed autotests
 
 
