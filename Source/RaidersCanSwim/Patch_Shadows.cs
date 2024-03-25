@@ -18,7 +18,7 @@ internal static class Patch_Shadows
             var instruction = instructionsList[i];
             yield return instruction;
             if (instruction.opcode != OpCodes.Brtrue || (MethodInfo)instructionsList[i - 1].operand !=
-                typeof(RoofGrid).GetMethod("Roofed", new[] { typeof(IntVec3) }))
+                typeof(RoofGrid).GetMethod("Roofed", [typeof(IntVec3)]))
             {
                 continue;
             }
@@ -27,7 +27,7 @@ internal static class Patch_Shadows
             yield return new CodeInstruction(OpCodes.Ldarg_1); //First argument for both our method and its own
             yield return
                 new CodeInstruction(OpCodes.Ldarg_S,
-                    (byte)4); //Second argument for our method, fourth argument for its own: Thing thing
+                    (byte)4); //Second argument for our method, fourth argument for its own: Thing
             yield return
                 new CodeInstruction(OpCodes.Call,
                     typeof(Patch_Shadows).GetMethod("SatisfiesNoShadow")); //Injected code

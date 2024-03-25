@@ -3,12 +3,17 @@ using Verse;
 
 namespace Swimming;
 
-[HarmonyPatch(typeof(PawnRenderer), "RenderPawnInternal")]
-internal static class Patch_PawnRenderer
+[HarmonyPatch(typeof(PawnRenderNodeWorker_Body), "CanDrawNow")]
+internal static class Patch_PawnRenderNodeWorker_Body
 {
-    private static void Prefix(ref bool renderBody, PawnRenderer __instance)
+    private static void Postfix(PawnDrawParms parms, ref bool __result)
     {
-        var pawn = Traverse.Create(__instance).Field("pawn").GetValue<Pawn>();
+        if (!__result)
+        {
+            return;
+        }
+
+        var pawn = parms.pawn;
         if (pawn == null || pawn.Dead || pawn.Map == null || !pawn.RaceProps.Humanlike)
         {
             return;
@@ -26,6 +31,6 @@ internal static class Patch_PawnRenderer
             return;
         }
 
-        renderBody = false;
+        __result = false;
     }
 }

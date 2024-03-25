@@ -26,7 +26,7 @@ internal static class Patch_ShotReport
             {
                 yield return new CodeInstruction(OpCodes.Ldarg_0);
                 yield return new CodeInstruction(OpCodes.Ldflda, AccessTools.Field(typeof(ShotReport), "target"));
-                //Since reflection doesnt work for this, I'm manually loading the private variable "target" with IL
+                //Since reflection doesn't work for this, I'm manually loading the private variable "target" with IL
                 yield return new CodeInstruction(OpCodes.Call,
                     typeof(TargetInfo).GetProperty("Thing")?.GetGetMethod());
                 yield return new CodeInstruction(OpCodes.Call,

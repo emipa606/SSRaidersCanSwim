@@ -9,15 +9,9 @@ namespace Swimming;
 [StaticConstructorOnStartup]
 public static class RaidersCanSwim
 {
-    public static readonly List<TerrainDef> DeepWaterDefs = new List<TerrainDef>
-    {
-        TerrainDefOf.WaterDeep, TerrainDefOf.WaterOceanDeep
-    };
+    public static readonly List<TerrainDef> DeepWaterDefs = [TerrainDefOf.WaterDeep, TerrainDefOf.WaterOceanDeep];
 
-    public static readonly List<string> DeepWaterLabels = new List<string>
-    {
-        "deep water", "deep ocean water"
-    };
+    public static readonly List<string> DeepWaterLabels = ["deep water", "deep ocean water"];
 
     static RaidersCanSwim()
     {
@@ -25,7 +19,7 @@ public static class RaidersCanSwim
         harmonyInstance.PatchAll(Assembly.GetExecutingAssembly());
         Log.Message(
             "SS Raiders Can Swim Initialized. Patches:\n" +
-            "(Prefix non-destructive) Verse.PawnRenderer.RenderPawnInternal Overload with 7 parameters\n" +
+            "(Prefix non-destructive) Verse.PawnRenderNodeWorker_Body.CanDrawNow\n" +
             "(Transpiler infix injection (brtrue)): Verse.Graphic_Shadow.DrawWorker\n" +
             "(Transpiler infix injection (ldc.r4 1))Verse.ShotReport.get_FactorFromPosture\n\n");
     }
