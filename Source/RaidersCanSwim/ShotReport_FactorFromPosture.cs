@@ -8,7 +8,7 @@ using Verse;
 namespace Swimming;
 
 [HarmonyPatch]
-internal static class Patch_ShotReport
+internal static class ShotReport_FactorFromPosture
 {
     private static MethodInfo TargetMethod()
     {
@@ -28,9 +28,9 @@ internal static class Patch_ShotReport
                 yield return new CodeInstruction(OpCodes.Ldflda, AccessTools.Field(typeof(ShotReport), "target"));
                 //Since reflection doesn't work for this, I'm manually loading the private variable "target" with IL
                 yield return new CodeInstruction(OpCodes.Call,
-                    typeof(TargetInfo).GetProperty("Thing")?.GetGetMethod());
+                    typeof(TargetInfo).GetProperty(nameof(TargetInfo.Thing))?.GetGetMethod());
                 yield return new CodeInstruction(OpCodes.Call,
-                    AccessTools.Method(typeof(Patch_ShotReport), nameof(Manual)));
+                    AccessTools.Method(typeof(ShotReport_FactorFromPosture), nameof(Manual)));
             }
 
             yield return instruction;
@@ -40,7 +40,7 @@ internal static class Patch_ShotReport
     private static float Manual(float result, Thing thing)
     {
         //0.2 factor for body size when in water
-        if (Patch_Shadows.SatisfiesNoShadow(thing.Position, thing))
+        if (Graphic_Shadow_DrawWorker.SatisfiesNoShadow(thing.Position, thing))
         {
             result = 0.2f;
         }

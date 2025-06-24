@@ -7,8 +7,8 @@ using Verse;
 
 namespace Swimming;
 
-[HarmonyPatch(typeof(Graphic_Shadow), "DrawWorker")]
-internal static class Patch_Shadows
+[HarmonyPatch(typeof(Graphic_Shadow), nameof(Graphic_Shadow.DrawWorker))]
+internal static class Graphic_Shadow_DrawWorker
 {
     private static IEnumerable<CodeInstruction> Transpiler(IEnumerable<CodeInstruction> instructions)
     {
@@ -18,7 +18,7 @@ internal static class Patch_Shadows
             var instruction = instructionsList[i];
             yield return instruction;
             if (instruction.opcode != OpCodes.Brtrue || (MethodInfo)instructionsList[i - 1].operand !=
-                typeof(RoofGrid).GetMethod("Roofed", [typeof(IntVec3)]))
+                typeof(RoofGrid).GetMethod(nameof(RoofGrid.Roofed), [typeof(IntVec3)]))
             {
                 continue;
             }
@@ -30,7 +30,7 @@ internal static class Patch_Shadows
                     (byte)4); //Second argument for our method, fourth argument for its own: Thing
             yield return
                 new CodeInstruction(OpCodes.Call,
-                    typeof(Patch_Shadows).GetMethod("SatisfiesNoShadow")); //Injected code
+                    typeof(Graphic_Shadow_DrawWorker).GetMethod(nameof(SatisfiesNoShadow))); //Injected code
             yield return
                 new CodeInstruction(OpCodes.Brtrue,
                     instruction.operand); //If true, break to exactly where the original instruction went

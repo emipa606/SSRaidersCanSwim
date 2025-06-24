@@ -3,8 +3,8 @@ using Verse;
 
 namespace Swimming;
 
-[HarmonyPatch(typeof(PawnRenderNodeWorker_Body), "CanDrawNow")]
-internal static class Patch_PawnRenderNodeWorker_Body
+[HarmonyPatch(typeof(PawnRenderNodeWorker_Body), nameof(PawnRenderNodeWorker_Body.CanDrawNow))]
+internal static class PawnRenderNodeWorker_Body_CanDrawNow
 {
     private static void Postfix(PawnDrawParms parms, ref bool __result)
     {
