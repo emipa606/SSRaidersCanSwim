@@ -3,4 +3,13 @@
     <BuildType Name="Release" />
   </Configurations>
   <Project Path="RaidersCanSwim/RaidersCanSwim.csproj" />
+  <Folder Name="/.github/">
+    <File Path="../.github/copilot-instructions.md" />
+  </Folder>
+  <Folder Name="/XML/About/">
+    <File Path="../About/about.xml" />
+  </Folder>
+  <Folder Name="/XML/Patches/">
+    <File Path="../Patches/Patches.xml" />
+  </Folder>
 </Solution>

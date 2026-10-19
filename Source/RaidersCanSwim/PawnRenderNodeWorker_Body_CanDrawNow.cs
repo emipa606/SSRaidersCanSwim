@@ -6,7 +6,7 @@ namespace Swimming;
 [HarmonyPatch(typeof(PawnRenderNodeWorker_Body), nameof(PawnRenderNodeWorker_Body.CanDrawNow))]
 internal static class PawnRenderNodeWorker_Body_CanDrawNow
 {
-    private static void Postfix(PawnDrawParms parms, ref bool __result)
+    public static void Postfix(PawnDrawParms parms, ref bool __result)
     {
         if (!__result)
         {

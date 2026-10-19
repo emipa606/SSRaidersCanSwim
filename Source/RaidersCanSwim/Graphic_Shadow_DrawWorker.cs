@@ -10,7 +10,7 @@ namespace Swimming;
 [HarmonyPatch(typeof(Graphic_Shadow), nameof(Graphic_Shadow.DrawWorker))]
 internal static class Graphic_Shadow_DrawWorker
 {
-    private static IEnumerable<CodeInstruction> Transpiler(IEnumerable<CodeInstruction> instructions)
+    public static IEnumerable<CodeInstruction> Transpiler(IEnumerable<CodeInstruction> instructions)
     {
         var instructionsList = instructions.ToList();
         for (var i = 0; i < instructionsList.Count; i++)

@@ -10,12 +10,12 @@ namespace Swimming;
 [HarmonyPatch]
 internal static class ShotReport_FactorFromPosture
 {
-    private static MethodInfo TargetMethod()
+    public static MethodInfo TargetMethod()
     {
         return typeof(ShotReport).GetProperty("FactorFromPosture", AccessTools.all)?.GetGetMethod(true);
     }
 
-    private static IEnumerable<CodeInstruction> Transpiler(IEnumerable<CodeInstruction> instructions)
+    public static IEnumerable<CodeInstruction> Transpiler(IEnumerable<CodeInstruction> instructions)
     {
         var list = instructions.ToList();
         for (var i = 0; i < list.Count; i++)
